@@ -1,0 +1,103 @@
+<!-- <h1>Name {{product.name}}</h1>
+<h1>Price {{product.price}}</h1>
+<h1>Category {{product.categoryID}}</h1> -->
+
+
+
+<!-- <h1>Name {{productsList[0].name}}</h1>
+<h1>Price {{productsList[0].price}}</h1>
+<h1>Category {{productsList[0].categoryID}}</h1> -->
+
+
+<!-- ########################################### -->
+
+
+
+<!-- <h3>{{filterByName}}</h3> -->
+<!-- loop,condition,... -->
+<!-- for(let i of iterator){} -->
+
+<h2>{{date1|date:'longDate'}}</h2>
+<div class="row">
+  <!-- @for(product of productsList;track product.id){ -->
+  @for(product of productsAfterFilter;track product.id){
+  <div class="col-sm-4 mb-4">
+
+    <!-- Day3 => custom directive -->
+    <!-- <img [src]="product.PrdimgURL" class="img-fluid" ImgStyle="purple" border1="red"> -->
+    <img [src]="product.PrdimgURL" class="img-fluid" ImgStyle="5px" radius1="20px">
+    <h3>{{product.name|uppercase}}</h3>
+    <!-- <h3>{{product.price|currency:'USD':'code'}}</h3> -->
+    <!-- <h3>{{product.price|currency:'USD':'symbol'}}</h3> -->
+
+    <!-- Day3 -->
+    <h3 class="text-decoration-line-through text-muted">{{product.price|currency:'USD':'symbol'}}</h3>
+    <h3>{{product.price|calcDiscount:50|currency:'USD':'symbol'}}</h3>
+
+    <!-- #################################### -->
+    <!-- ngclass & ngstyle-->
+    <!-- <h3 [ngClass]="{'text-danger': product.quantity==0,'bg-warning': product.quantity>0}">{{product.name|uppercase}}</h3>
+
+    <h3 [ngStyle]="{'background-color':(product.price<10000)?'lightgrey':'lightgreen','color':(product.price>5000)?'red':'blue'}">{{product.price}}</h3> -->
+
+    <!-- class binding -->
+    <!-- <h3 [class.class1]="product.quantity===0">{{product.name}}</h3> -->
+
+    <!-- style binding -->
+
+    <!-- <h3 [style.background-color]="(product.price>10000)?'lightblue':'lightgrey'" [style.color]="(product.price>10000)?'blue':'red'">{{product.price}}</h3> -->
+    <!-- <button class="btn btn-danger" [hidden]="product.quantity==0">Add To Cart<i class="fa-sharp fa-solid fa-cart-plus modifyIcon"></i></button> -->
+    <button class="btn btn-danger" [disabled]="product.quantity==0" (click)="addTocart(product)">Add To Cart<i
+        class="fa-sharp fa-solid fa-cart-plus modifyIcon"></i></button>
+
+       <h4>
+        @switch (product.categoryID) {
+          @case (1) {
+            Table
+          }
+          @case (2) {
+            Chairs
+          }
+          @default {
+            TV Unit
+          }
+        }
+        </h4>
+
+
+        <!-- @if(product.quantity>0){
+          <h3>{{product.quantity}}</h3>
+        }
+        @else {
+          <h3 class="text-danger">Out Of Stock</h3>
+
+        } -->
+
+        <!-- ####################################### -->
+        <!-- @if(product.quantity==2){
+          <h3>2 Items left</h3>
+        }
+        @else if(product.quantity==3){
+          <h3>3 Items left</h3>
+
+        }
+        @else if(product.quantity==0){
+          <h3>out of stock</h3>
+
+        }
+        @else {
+          <h3 class="text-danger">{{product.quantity}}</h3>
+
+        } -->
+        <!-- ####################################### -->
+
+  </div>
+
+
+
+  }
+  @empty {
+  <h3>Products not fonud</h3>
+  }
+
+</div>

@@ -1,0 +1,20 @@
+<!-- bind => interpolation {{}} -->
+ <!-- <h1>{{firstTitle}}</h1>
+
+
+ <h3>{{sayHello()}}</h3> -->
+
+
+ <h1 class="trackName">{{track.trackName}}</h1>
+ <h3>{{track.trackNumber}}</h3>
+ <h3>{{track.trackCourses}}</h3>
+<!-- <img src={{track.trackImg}} width="300"> -->
+<button (click)="toggleImg()">Show/Hide Img</button>
+
+<!-- true =>show in dom -->
+<!-- false =>hide element from dom -->
+@if(toggleimg){
+<img [src]="track.trackImg" width="300">
+}
+<!-- <input type="text" [value]="inputValue"> -->
+
