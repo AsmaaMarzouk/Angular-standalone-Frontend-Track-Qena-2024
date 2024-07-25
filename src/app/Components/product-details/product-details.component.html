@@ -1,0 +1,37 @@
+@if(product){
+  <div class="row mb-4">
+    <div class="col-sm-6">
+      <h4>
+        @switch (product.quantity) {
+          @case (0) {
+
+           Out of stock
+          }
+          @case (1) {
+
+            Only one left!
+          }
+          @case (2) {
+
+            Only Two left!
+          }
+          @default {
+            In stock
+          }
+        }
+      </h4>
+      <img [src]="product.PrdimgURL" class="img-fluid">
+
+
+    </div>
+    <div class="col-sm-6">
+
+
+      <h1>{{product.name}}</h1>
+      <h3>Price: {{product.price}}</h3>
+      <h3>Material: {{product.Material}}</h3>
+      <h4>Details: {{product.details}}</h4>
+    </div>
+  </div>
+
+}

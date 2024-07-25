@@ -21,7 +21,8 @@
 <div class="row">
   <!-- @for(product of productsList;track product.id){ -->
   @for(product of productsAfterFilter;track product.id){
-  <div class="col-sm-4 mb-4">
+  <div class="col-sm-4 mb-4" (click)="goToDetails(product.id)">
+    <!-- <div class="col-sm-4 mb-4" [routerLink]="['Prd',product.id]"> -->
 
     <!-- Day3 => custom directive -->
     <!-- <img [src]="product.PrdimgURL" class="img-fluid" ImgStyle="purple" border1="red"> -->
