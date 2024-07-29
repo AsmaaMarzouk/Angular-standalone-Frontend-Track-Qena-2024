@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ProductsService } from '../../Services/products.service';
 import { Iproduct } from '../../Models/iproduct';
 import { Location } from '@angular/common';
+import { ProductsWithApiService } from '../../Services/products-with-api.service';
 
 @Component({
   selector: 'app-product-details',
@@ -12,16 +13,20 @@ import { Location } from '@angular/common';
   styleUrl: './product-details.component.scss',
 })
 export class ProductDetailsComponent implements OnInit {
+  // prdID: number = 0;
   prdID: number = 0;
   product: Iproduct | undefined = undefined;
   IDsList: number[] = [];
   currentIndex: number = 0;
 
+  // Day6
+  searchResult:Iproduct[]=[];
   constructor(
     private activatedRoute: ActivatedRoute,
     private productservice: ProductsService,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private productApi: ProductsWithApiService
   ) {}
   ngOnInit(): void {
     //  console.log( this.activatedRoute.snapshot.paramMap.get('ProductId'));
@@ -42,14 +47,25 @@ export class ProductDetailsComponent implements OnInit {
       // console.log(this.prdID);
 
       // this.product = this.productservice.getProductById(this.prdID);
-      let prod = this.productservice.getProductById(this.prdID);
-      if (prod) {
-        this.product = prod;
-      } else {
-        // alert("product not found")
-        // this.router.navigate(['**'])
-        this.location.back();
-      }
+      // let prod = this.productservice.getProductById(this.prdID);
+      // if (prod) {
+      //   this.product = prod;
+      // } else {
+      //   // alert("product not found")
+      //   // this.router.navigate(['**'])
+      //   this.location.back();
+      // }
+
+      // Day6
+
+      this.productApi.getProductByID(this.prdID.toString()).subscribe({
+        next: (prd) => {
+          this.product = prd;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
     });
   }
 
@@ -66,5 +82,22 @@ export class ProductDetailsComponent implements OnInit {
   goBackFunc() {
     this.location.back();
     // this.router.navigate(['/Products']);
+  }
+
+  // Day6
+  searchFunc(material:string) {
+    this.productApi.searchPrdWithMaterial(material).subscribe({
+      next:(data)=>{
+
+        // console.log(data);
+        this.searchResult=data;
+
+      },
+      error:(error)=>{
+        console.log(error);
+
+      }
+    })
+
   }
 }

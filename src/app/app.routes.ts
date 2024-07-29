@@ -6,6 +6,7 @@ import { NotFoundPageComponent } from './Components/not-found-page/not-found-pag
 import { GroupOfRoutesComponent } from './Components/group-of-routes/group-of-routes.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 import { ObsAndOperatorsComponent } from './Components/obs-and-operators/obs-and-operators.component';
+import { UserTemplateFormComponent } from './Components/User/user-template-form/user-template-form.component';
 
 export const routes: Routes = [
   // routes => path
@@ -18,6 +19,7 @@ export const routes: Routes = [
   {path:"ProductsParent",component:ProductsParentComponent,title:"Products Parent page"},
   {path:'Prd/:ProductId',component:ProductDetailsComponent,title:"Product Details"},
   {path:'ObsAndOperators',component:ObsAndOperatorsComponent,title:"Obs Page"},
+  {path:'TemplateUser',component:UserTemplateFormComponent,title:"sign up user"},
   // not found page, wildcard path
   {path:"**",component:NotFoundPageComponent},
 

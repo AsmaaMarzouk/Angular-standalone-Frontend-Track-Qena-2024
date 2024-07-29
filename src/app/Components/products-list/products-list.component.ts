@@ -6,11 +6,18 @@ import { CalcDiscountPipe } from '../../Pipes/calc-discount.pipe';
 import { ImgStyleDirective } from '../../Directives/img-style.directive';
 import { ProductsService } from '../../Services/products.service';
 import { Router, RouterModule } from '@angular/router';
+import { ProductsWithApiService } from '../../Services/products-with-api.service';
 
 @Component({
   selector: 'app-products-list',
   standalone: true,
-  imports: [FormsModule, CommonModule,CalcDiscountPipe,ImgStyleDirective,RouterModule],
+  imports: [
+    FormsModule,
+    CommonModule,
+    CalcDiscountPipe,
+    ImgStyleDirective,
+    RouterModule,
+  ],
   templateUrl: './products-list.component.html',
   styleUrl: './products-list.component.scss',
 })
@@ -33,8 +40,20 @@ export class ProductsListComponent {
     // this.productsAfterFilter = this.performFilter(value);
     //  console.log(this.productsAfterFilter);
 
-    this.productsAfterFilter = this.productservice.performFilter(value)
+    // this.productsAfterFilter = this.productservice.performFilter(value)
 
+    // Day6
+
+    this.productApi.getAllProducts().subscribe({
+      next: (data) => {
+        this.productsAfterFilter = data.filter((prd: Iproduct) =>
+          prd.name.toLowerCase().includes(value)
+        );
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
   // productsList: Iproduct[];
 
@@ -47,7 +66,11 @@ export class ProductsListComponent {
   @Output() newPrdIncart = new EventEmitter<Iproduct>();
 
   // Day4 => inject
-  constructor(public productservice:ProductsService,private router:Router ) {
+  constructor(
+    public productservice: ProductsService,
+    private router: Router,
+    private productApi: ProductsWithApiService
+  ) {
     // this.productsList = [
     //   {
     //     id: 1,
@@ -142,7 +165,25 @@ export class ProductsListComponent {
     // ];
   }
   ngOnInit(): void {
-    this.productsAfterFilter = this.productservice.getAllProducts();
+    // this.productsAfterFilter = this.productservice.getAllProducts();
+
+    // Day6
+    this.productApi.getAllProducts().subscribe({
+      next: (data) => {
+        // console.log(data);
+
+        this.productsAfterFilter = data;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+
+    // this.productApi.getAllProducts().subscribe(
+    //   data=>{
+    //     this.productsAfterFilter=data
+    //   }
+    // )
   }
 
   // performFilter(filterValue: string): Iproduct[] {
@@ -159,8 +200,7 @@ export class ProductsListComponent {
   }
 
   // Day4
-  goToDetails(prdID:number){
-
-    this.router.navigate(['Prd',prdID]);
+  goToDetails(prdID: number) {
+    this.router.navigate(['Prd', prdID]);
   }
 }

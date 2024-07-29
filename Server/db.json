@@ -1,5 +1,5 @@
 {
-  "Products":[
+  "Products": [
     {
       "id": "1",
       "name": "Odense 8-Seater Top Dining Table",
@@ -89,6 +89,37 @@
       "categoryID": 3,
       "Material": "wood",
       "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut omnis tenetur excepturi. Magni odio quos tempore commodi qui ex eum, soluta obcaecati repellendus quia autem nemo ipsum sapiente sunt non? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut omnis tenetur excepturi. Magni odio quos tempore commodi qui ex eum, soluta obcaecati repellendus quia autem nemo ipsum sapiente sunt non? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut omnis tenetur excepturi. Magni odio quos tempore commodi qui ex eum, soluta obcaecati repellendus quia autem nemo ipsum sapiente sunt non? "
+    }
+  ],
+  "Users": [
+    {
+      "id": "23",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@gmail.com"
+    },
+    {
+      "id": "9d85",
+      "firstName": "ahmed",
+      "lastName": "ali",
+      "email": "ali@gmail.com"
+    },
+    {
+      "id": "859e",
+      "firstName": "asd",
+      "lastName": "eee",
+      "email": "adminmai@gmail.com"
+    },
+    {
+      "id": "ef65",
+      "firstName": "",
+      "lastName": ""
+    },
+    {
+      "id": "b7f6",
+      "firstName": "asd",
+      "lastName": "asdgg",
+      "email": "asd@asd"
     }
   ]
 }
