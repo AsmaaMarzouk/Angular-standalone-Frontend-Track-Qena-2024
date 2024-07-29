@@ -33,5 +33,13 @@
       <h4>Details: {{product.details}}</h4>
     </div>
   </div>
-
+  <!-- <button class="button-91" [routerLink]="['/Products']">Back</button> -->
+  <button class="button-91" (click)="goBackFunc()">Back</button>
 }
+
+
+
+<div class="d-flex justify-content-center" role="group" aria-label="Basic example">
+  <button class="border-0" (click)="prevFunc()" [disabled]="prdID==IDsList[0]"><i class="fa-solid fa-angles-left fs-4 text-primary"></i></button>
+  <button class="border-0" (click)="nextFunc()" [disabled]="prdID==IDsList[IDsList.length-1]"><i class="fa-solid fa-angles-right fs-4"></i></button>
+</div>
