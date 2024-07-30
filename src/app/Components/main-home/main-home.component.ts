@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { TrackInfo } from '../../Models/track-info';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-main-home',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule, MatButtonModule],
   templateUrl: './main-home.component.html',
   styleUrl: './main-home.component.scss'
 })

@@ -31,7 +31,7 @@
         <label class="col-md-2 col-form-label" for="lastNameId">Last Name</label>
         <div class="col-md-8">
           <input class="form-control" id="lastNameId" type="text" placeholder="Last Name (required)" required
-            pattern="[A-Za-z]{5,}" name="lastName" [(ngModel)]="user.lastName" #lastNameVar="ngModel" [ngClass]="{'is-invalid':lastNameVar.dirty && (!lastNameVar.valid),'is-valid':lastNameVar.valid}" />
+            pattern="[A-Za-z]{5,}" name="lastName" [(ngModel)]="user.lastName" #lastNameVar="ngModel" [ngClass]="{'is-invalid':(lastNameVar.touched || lastNameVar.dirty) && !lastNameVar.valid,'is-valid':lastNameVar.valid}" />
             <span class="invalid-feedback">
               @if(lastNameVar.errors?.['required']){
               <span>Last name is required</span>
